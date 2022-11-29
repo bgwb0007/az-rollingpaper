@@ -1,0 +1,37 @@
+/* App */
+.App {
+}
+
+/* editor */
+
+.PostEditor {
+  border: 1px solid gray;
+  text-align: center;
+  padding: 20px;
+}
+
+.PostEditor input,
+textarea {
+  margin-bottom: 20px;
+  width: 500px;
+}
+
+.PostEditor input {
+  padding: 10px;
+}
+.PostEditor textarea {
+  padding: 10px;
+  height: 150px;
+}
+
+.PostEditor select {
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.PostEditor button {
+  width: 500px;
+  padding: 10px;
+  cursor: pointer;
+}
