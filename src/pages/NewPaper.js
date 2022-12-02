@@ -7,7 +7,7 @@ import axios from 'axios'
 import { useSearchParams } from "react-router-dom";
 
 const NewPaper = () =>{
-    const [searchParams, serSerchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
 
     const receiver = {
         id : searchParams.get("id"),
@@ -35,7 +35,7 @@ const NewPaper = () =>{
         });
     }
     const sendPaper = (e)=>{
-        let url = "https://rollingpaper01fnc.azurewebsites.net/api/HttpTrigger2?code=Ln1D94igg3PyIW9TpC66Xh2BjAUVjiIoyOGCyqJ4-FXUAzFuAi2NFA==";
+        let url = "https://rollingpaper01fnc.azurewebsites.net/api/HttpTrigger1?code=Fhylh_FMtkiJWxUTjn_T_fyfgYgXSxkvJL4z-zQfRtXLAzFuP-pRJQ==";
 
         let params = {
             receiverName : receiver.name ,
@@ -61,6 +61,7 @@ const NewPaper = () =>{
               debugger
           }).then(function() {
               // 항상 실행
+              debugger
           });
     }
 
