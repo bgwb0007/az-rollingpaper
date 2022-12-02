@@ -47,7 +47,7 @@ const Home = ({receiverList}) =>{
             <div className="card-wrap">
             {state.receiverListSerched.map((it) => (
                 <Card key={it.id}>
-                    <Card.Img variant="top" src="holder.js/100px180" />
+                    <Card.Img variant="top"/>
                     <Card.Body>
                         <Card.Title>Card Title</Card.Title>
                         <Card.Text>

@@ -55,9 +55,11 @@ const NewPaper = () =>{
              })
           .then(function (response) {
                // response  
+               console.log("성공:",response);
                debugger
           }).catch(function (error) {
               // 오류발생시 실행
+              console.log("실패:",error);
               debugger
           }).then(function() {
               // 항상 실행
