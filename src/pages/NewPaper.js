@@ -35,6 +35,8 @@ const NewPaper = () =>{
         });
     }
     const sendPaper = (e)=>{
+        let url = "https://rollingpaper01fnc.azurewebsites.net/api/HttpTrigger1?code=QwTQA_bIboX926VUY6ot31AmODie9C0qEr4QabbD7PafAzFu3dpS8g==";
+
         let params = {
             receiverName : receiver.name ,
             email : receiver.email ,
@@ -43,7 +45,7 @@ const NewPaper = () =>{
             content: state.content,
             isPublicYn : state.isPublicYn,
         };
-        axios.post("##url입력부분##", {
+        axios.post(url, {
             params
           },{ 
             headers:{ 
