@@ -1,11 +1,12 @@
 /* App */
 .App {
+  padding: 20px;
 }
 
 
 /* editor */
 
-.ReceiverSelect {
+.Home {
   width: 70%;
   margin-left: auto;
   margin-right: auto;
@@ -13,7 +14,7 @@
   padding-bottom: 2rem;
 
 }
-.ReceiverSelect .receiverSerch{
+.Home .receiverSerch{
   width: 50%;
   margin-left: auto;
   margin-right: auto;
@@ -21,13 +22,13 @@
 #receiverSerch {
   ime-mode:active;
 }
-.ReceiverSelect .card{
+.Home .card{
   width: 200px;
   margin-right: 1rem;
   margin-bottom: 1.5rem;
   
 }
-.ReceiverSelect .card-wrap{
+.Home .card-wrap{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -36,25 +37,25 @@
 }
 
 
-.PostEditor {
+.NewPaper {
   text-align: center;
   padding: 20px;
 }
 
-.PostEditor .author,
-.PostEditor .receiver {
+.NewPaper .author,
+.NewPaper .receiver {
   width: 500px;
   margin-left: auto;
   margin-right: auto;
   margin-top:  1rem;
 }
-.PostEditor .content{
+.NewPaper .content{
   width: 500px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2rem;
 }
-.PostEditor button {
+.NewPaper button {
   width: 500px;
   padding: 10px;
   cursor: pointer;

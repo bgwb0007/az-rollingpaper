@@ -1,31 +1,32 @@
 import './App.css';
-import PostEditor from './PostEditor';
-import ReceiverSelect from './ReceiverSelect';
+import Home from './pages/Home';
+import NewPaper from './pages/NewPaper';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-const dummyList = [
-  {
+const memberList = [
+{
       id : 1,
       name : "지강두",
       position : "팀장",
       email : "kangdoo@lgcns.com",
       phone : "010-9937-6447",
       photo : "/test/img1.png"
-  },{
+},{
       id : 2,
       name : "김종우",
       position : "책임",
       email : "jongwookim@lgcns.com",
       phone : "010-4242-7415",
       photo : "/test/img1.png"
-  },{
+},{
       id : 3,
       name : "심규열",
       position : "책임",
       email : "skysim06@lgcns.com",
       phone : "010-2637-9060",
       photo : "/test/img1.png"
-  },{
+},{
     id : 5,
     name : "김찬수",
     position : "선임",
@@ -87,11 +88,15 @@ const dummyList = [
 
 function App() {
   return (
-    <div className="App">
-      <h2>2022 연말 Rolling Paper</h2>
-      <ReceiverSelect receiverList={dummyList}/>
-      <PostEditor receiver={dummyList[0]} />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <h2>2022 연말 Rolling Paper</h2>
+        <Routes>
+          <Route path="/" element={<Home receiverList={memberList}/>} />
+          <Route path="/newPaper" element={<NewPaper />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

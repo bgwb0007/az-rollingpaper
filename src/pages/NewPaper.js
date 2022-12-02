@@ -4,8 +4,20 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import axios from 'axios'
+import { useSearchParams } from "react-router-dom";
 
-const PostEditor = ({receiver}) =>{
+const NewPaper = () =>{
+    const [searchParams, serSerchParams] = useSearchParams();
+
+    const receiver = {
+        id : searchParams.get("id"),
+        name : searchParams.get("name"),
+        position : "팀장",
+        email : "kangdoo@lgcns.com",
+        phone : "010-9937-6447",
+        photo : "/test/img1.png"
+    }
+
     const [state, setState] = useState({
         author: "",
         content: "",
@@ -51,7 +63,7 @@ const PostEditor = ({receiver}) =>{
     }
 
     return (
-        <div className="PostEditor">
+        <div className="NewPaper">
             <div>
                 <InputGroup className="receiver">
                     <InputGroup.Text id="receiver">
@@ -114,4 +126,4 @@ const PostEditor = ({receiver}) =>{
         </div>
     );
 }
-export default PostEditor; 
+export default NewPaper; 

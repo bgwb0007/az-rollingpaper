@@ -2,8 +2,10 @@ import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useNavigate } from "react-router-dom";
 
-const ReceiverSelect = ({receiverList}) =>{
+const Home = ({receiverList}) =>{
+    const navigate = useNavigate();
     
     const [state, setState] = useState({
         receiverSerch: "",
@@ -30,7 +32,7 @@ const ReceiverSelect = ({receiverList}) =>{
     }
 
     return (
-        <div className="ReceiverSelect">
+        <div className="Home">
             <div>
             <Form.Group className="receiverSerch">
                 <Form.Control 
@@ -51,7 +53,9 @@ const ReceiverSelect = ({receiverList}) =>{
                         <Card.Text>
                             {it.name} {it.position}
                         </Card.Text>
-                        <Button variant="primary">선택</Button>
+                        <Button variant="primary" onClick={()=>{
+                                navigate("/newPaper?name="+ it.name)
+                            }}>선택</Button>
                     </Card.Body>
                 </Card>
             ))}
@@ -59,4 +63,4 @@ const ReceiverSelect = ({receiverList}) =>{
         </div>
     );
 }
-export default ReceiverSelect; 
+export default Home;
