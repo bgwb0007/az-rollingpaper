@@ -2,36 +2,59 @@
 .App {
 }
 
+
 /* editor */
 
+.ReceiverSelect {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+}
+.ReceiverSelect .receiverSerch{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ReceiverSelect .card{
+  width: 200px;
+  margin-right: 1rem;
+  margin-bottom: 1.5rem;
+  
+}
+.ReceiverSelect .card-wrap{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+
 .PostEditor {
-  border: 1px solid gray;
   text-align: center;
   padding: 20px;
 }
 
-.PostEditor input,
-textarea {
-  margin-bottom: 20px;
+.PostEditor .author,
+.PostEditor .receiver {
   width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:  1rem;
 }
-
-.PostEditor input {
-  padding: 10px;
+.PostEditor .content{
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
 }
-.PostEditor textarea {
-  padding: 10px;
-  height: 150px;
-}
-
-.PostEditor select {
-  width: 300px;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
 .PostEditor button {
   width: 500px;
   padding: 10px;
   cursor: pointer;
 }
+
