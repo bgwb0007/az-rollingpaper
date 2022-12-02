@@ -15,7 +15,7 @@ const NewPaper = () =>{
         position : "사원",
         email : "seohyunglim@lgcns.com",
         phone : "010-8836-0007",
-        photo : "/test/img1.png"
+        photo : "/test/img2.png"
     }
 
     const [state, setState] = useState({
