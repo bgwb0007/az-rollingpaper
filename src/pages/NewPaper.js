@@ -35,7 +35,7 @@ const NewPaper = () =>{
         });
     }
     const sendPaper = (e)=>{
-        let url = "https://rollingpaper01fnc.azurewebsites.net/api/HttpTrigger1?code=QwTQA_bIboX926VUY6ot31AmODie9C0qEr4QabbD7PafAzFu3dpS8g==";
+        let url = "https://rollingpaper01fnc.azurewebsites.net/api/HttpTrigger2?code=Ln1D94igg3PyIW9TpC66Xh2BjAUVjiIoyOGCyqJ4-FXUAzFuAi2NFA==";
 
         let params = {
             receiverName : receiver.name ,
@@ -45,7 +45,7 @@ const NewPaper = () =>{
             content: state.content,
             isPublicYn : state.isPublicYn,
         };
-        axios.post(url, {
+        axios.get(url, {
             params
           },{ 
             headers:{ 
