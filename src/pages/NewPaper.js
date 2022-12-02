@@ -12,9 +12,9 @@ const NewPaper = () =>{
     const receiver = {
         id : searchParams.get("id"),
         name : searchParams.get("name"),
-        position : "팀장",
-        email : "kangdoo@lgcns.com",
-        phone : "010-9937-6447",
+        position : "사원",
+        email : "seohyunglim@lgcns.com",
+        phone : "010-8836-0007",
         photo : "/test/img1.png"
     }
 
