@@ -35,7 +35,7 @@ const ReceiverSelect = ({receiverList}) =>{
             <Form.Group className="receiverSerch">
                 <Form.Control 
                     id="receiverSerch"
-                    type="email" 
+                    type="text"
                     placeholder="이름으로 검색하세요." 
                     value={state.author} 
                     onChange={handleChangeState}

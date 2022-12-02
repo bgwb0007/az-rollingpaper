@@ -3,11 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import axios from 'axios'
 
 const PostEditor = ({receiver}) =>{
     const [state, setState] = useState({
         author: "",
         content: "",
+        isPublicYn: "Y",
     });
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -20,6 +22,33 @@ const PostEditor = ({receiver}) =>{
             [e.target.id]: e.target.value,
         });
     }
+    const sendPaper = (e)=>{
+        let params = {
+            receiverName : receiver.name ,
+            email : receiver.email ,
+            phone : receiver.phone,
+            author: state.author,
+            content: state.content,
+            isPublicYn : state.isPublicYn,
+        };
+        axios.post("##url입력부분##", {
+            params
+          },{ 
+            headers:{ 
+             'Content-type': 'application/json', 
+             'Accept': 'application/json' 
+               } 
+             })
+          .then(function (response) {
+               // response  
+               debugger
+          }).catch(function (error) {
+              // 오류발생시 실행
+              debugger
+          }).then(function() {
+              // 항상 실행
+          });
+    }
 
     return (
         <div className="PostEditor">
@@ -31,13 +60,13 @@ const PostEditor = ({receiver}) =>{
                     <Form.Control
                     aria-label="To"
                     aria-describedby="receiver"
-                    value= {receiver}
+                    value= {receiver.name}
                     id="receiver"
                     readOnly
                     />
                 </InputGroup>
                 <InputGroup className="author">
-                    <InputGroup.Text id="author">
+                    <InputGroup.Text>
                     From
                     </InputGroup.Text>
                     <Form.Control
@@ -77,7 +106,7 @@ const PostEditor = ({receiver}) =>{
                 <Button variant="secondary" onClick={handleClose}>
                     취소
                 </Button>
-                <Button variant="primary" onClick={handleClose}>
+                <Button variant="primary" onClick={sendPaper}>
                     보내기
                 </Button>
                 </Modal.Footer>
