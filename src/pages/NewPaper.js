@@ -4,10 +4,12 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import axios from 'axios'
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 const NewPaper = () =>{
     const [searchParams] = useSearchParams();
+    
+    const navigate = useNavigate();
 
     const receiver = {
         id : searchParams.get("id"),
@@ -38,14 +40,14 @@ const NewPaper = () =>{
         let url = "https://rollingpaper01fnc.azurewebsites.net/api/HttpTrigger1?code=Fhylh_FMtkiJWxUTjn_T_fyfgYgXSxkvJL4z-zQfRtXLAzFuP-pRJQ==";
 
         let params = {
-            receiverName : receiver.name ,
+            name : receiver.name ,
             email : receiver.email ,
             phone : receiver.phone,
             author: state.author,
             content: state.content,
             isPublicYn : state.isPublicYn,
         };
-        axios.get(url, {
+        axios.post(url, {
             params
           },{ 
             headers:{ 
@@ -55,12 +57,16 @@ const NewPaper = () =>{
              })
           .then(function (response) {
                // response  
-               console.log("성공:",response);
                debugger
+               console.log("성공:",response);
+               alert("메시지 전송이 성공적으로 예약되었습니다.");
+               navigate("/");
           }).catch(function (error) {
               // 오류발생시 실행
-              console.log("실패:",error);
               debugger
+              console.log("실패:",error);
+              alert("저장에 실패했습니다. 잠시 후 다시 시도해주세요.");
+              handleClose();
           }).then(function() {
               // 항상 실행
               debugger
