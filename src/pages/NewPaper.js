@@ -24,6 +24,7 @@ const NewPaper = () =>{
         author: "",
         content: "",
         isPublicYn: "Y",
+        testRow: "",
     });
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -40,8 +41,8 @@ const NewPaper = () =>{
         let url = "https://prod-17.eastasia.logic.azure.com:443/workflows/c37bacf5695d438da5843900cf884ea1/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=J3o9Ia4KgWxzno0moRAZj1wievsKtuTNtz3WoTzJec8";
 
         let params = {
-            PartitionKey: receiver.name,
-            RowKey: "5",
+            PartitionKey: "2022안부메시지",
+            RowKey: state.testRow,
             name : receiver.name ,
             email : receiver.email ,
             phone : receiver.phone,
@@ -102,6 +103,7 @@ const NewPaper = () =>{
                     placeholder="보내는 사람 이름을 입력해주세요."
                     />
                 </InputGroup>
+                
             </div>
             <div>
                 <Form.Group className="content">
@@ -135,6 +137,20 @@ const NewPaper = () =>{
                 </Button>
                 </Modal.Footer>
             </Modal>
+
+            <InputGroup className="testRow" style={{width:"300px"}}>
+                    <InputGroup.Text>
+                    테스트용
+                    </InputGroup.Text>
+                    <Form.Control
+                    aria-label="From"
+                    aria-describedby="testRow"
+                    value={state.testRow}
+                    id="testRow"
+                    onChange={handleChangeState}
+                    placeholder="testRow"
+                    />
+                </InputGroup>
         </div>
     );
 }
