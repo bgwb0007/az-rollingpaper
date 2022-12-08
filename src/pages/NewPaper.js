@@ -49,9 +49,8 @@ const NewPaper = () =>{
             content: state.content,
             isPublicYn : state.isPublicYn,
         };
-        axios.post(url, {
-            params
-          },{ 
+        axios.post(url, params
+          ,{ 
             headers:{ 
              'Content-type': 'application/json', 
              'Accept': 'application/json' 
