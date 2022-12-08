@@ -1,35 +1,42 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Badge from 'react-bootstrap/Badge';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import axios from 'axios'
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const NewPaper = () =>{
-    const [searchParams] = useSearchParams();
     
     const navigate = useNavigate();
+    const location = useLocation();
+    const receiver = location.state;
 
-    const receiver = {
-        id : searchParams.get("id"),
-        name : searchParams.get("name"),
-        position : "사원",
-        email : "seohyunglim@lgcns.com",
-        phone : "010-8836-0007",
-        photo : "/test/img2.png"
-    }
+    const authorInput = useRef();
+    const contentInput = useRef();
 
     const [state, setState] = useState({
         author: "",
         content: "",
-        isPublicYn: "Y",
+        isPrivateYn: "N",
         testRow: "",
     });
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-  
+    const handleShow = () => {
+        if(state.author.length < 1){
+            authorInput.current.focus();
+            return;
+        }
+        if(state.content.length < 1){
+            contentInput.current.focus();
+            return;
+        }
+        setShow(true);
+    };
 
     const handleChangeState = (e)=>{
         setState({
@@ -37,18 +44,30 @@ const NewPaper = () =>{
             [e.target.id]: e.target.value,
         });
     }
-    const sendPaper = (e)=>{
-        let url = "https://prod-17.eastasia.logic.azure.com:443/workflows/c37bacf5695d438da5843900cf884ea1/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=J3o9Ia4KgWxzno0moRAZj1wievsKtuTNtz3WoTzJec8";
+    const handleChangeStateSwitch = (e)=>{
+        const isChecked = e.target.checked;
+        setState({
+            ...state,
+            [e.target.id]: isChecked ? 'Y' : 'N',
+        })
+    }
 
+    const sendPaper = (e)=>{
+       
+        const url = "https://prod-17.eastasia.logic.azure.com:443/workflows/c37bacf5695d438da5843900cf884ea1/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=J3o9Ia4KgWxzno0moRAZj1wievsKtuTNtz3WoTzJec8";
+        const date = new Date();
+        const rowKey = receiver.name + "_" + date.getFullYear() + date.getMonth() + date.getDate()
+                        + date.getHours() + date.getMinutes() + date.getSeconds();
+        
         let params = {
             PartitionKey: "2022안부메시지",
-            RowKey: state.testRow,
+            RowKey: rowKey,
             name : receiver.name ,
             email : receiver.email ,
             phone : receiver.phone,
             author: state.author,
             content: state.content,
-            isPublicYn : state.isPublicYn,
+            isPrivateYn : state.isPrivateYn,
         };
         axios.post(url, params
           ,{ 
@@ -60,9 +79,15 @@ const NewPaper = () =>{
           .then(function (response) {
                // response  
                debugger
-               console.log("성공:",response);
-               alert("메시지 전송이 성공적으로 예약되었습니다.");
-               navigate("/");
+               if(response.data.status === '200' && response.data.success === 'Y'){
+                console.log("성공:",response);
+                alert("메시지 전송이 성공적으로 예약되었습니다.");
+                navigate("/");
+               }else{
+                console.log("실패:",response);
+                alert("저장에 실패했습니다. 잠시 후 다시 시도해주세요.");
+                handleClose();
+               }
           }).catch(function (error) {
               // 오류발생시 실행
               debugger
@@ -77,7 +102,7 @@ const NewPaper = () =>{
 
     return (
         <div className="NewPaper">
-            <div>
+            <div className="inputWrapper">
                 <InputGroup className="receiver">
                     <InputGroup.Text id="receiver">
                     To
@@ -95,6 +120,7 @@ const NewPaper = () =>{
                     From
                     </InputGroup.Text>
                     <Form.Control
+                    ref={authorInput}
                     aria-label="From"
                     aria-describedby="author"
                     value={state.author}
@@ -103,22 +129,40 @@ const NewPaper = () =>{
                     placeholder="보내는 사람 이름을 입력해주세요."
                     />
                 </InputGroup>
-                
-            </div>
-            <div>
+                <div className="isPrivateYn">
+                <OverlayTrigger
+                    key='top'
+                    placement='top'
+                    overlay={
+                        <Tooltip id='tooltip-top'>
+                        메시지를 받는 사람만 볼 수 있습니다.
+                        </Tooltip>
+                    }
+                    >
+                        <Badge pill bg="secondary">
+                            ?
+                        </Badge>
+                    </OverlayTrigger>
+                    <Form.Check 
+                        reverse
+                        type="switch"
+                        id="isPrivateYn"
+                        label="비밀글 보내기"
+                        onChange={handleChangeStateSwitch}
+                    />
+                </div>
                 <Form.Group className="content">
                     <Form.Label></Form.Label>
                     <Form.Control 
+                        ref={contentInput}
                         as="textarea" 
-                        rows={5} 
+                        rows={9} 
                         id="content"
                         value={state.content} 
                         onChange={handleChangeState} 
                         placeholder="메시지를 입력해 주세요."
                     />
                 </Form.Group>
-            </div>
-            <div>
                 <Button variant="primary" onClick={handleShow}>
                     메시지 보내기
                 </Button>
@@ -137,20 +181,6 @@ const NewPaper = () =>{
                 </Button>
                 </Modal.Footer>
             </Modal>
-
-            <InputGroup className="testRow" style={{width:"300px"}}>
-                    <InputGroup.Text>
-                    테스트용
-                    </InputGroup.Text>
-                    <Form.Control
-                    aria-label="From"
-                    aria-describedby="testRow"
-                    value={state.testRow}
-                    id="testRow"
-                    onChange={handleChangeState}
-                    placeholder="testRow"
-                    />
-                </InputGroup>
         </div>
     );
 }

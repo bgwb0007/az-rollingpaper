@@ -54,7 +54,9 @@ const Home = ({receiverList}) =>{
                             {it.name} {it.position}
                         </Card.Text>
                         <Button variant="primary" onClick={()=>{
-                                navigate("/newPaper?name="+ it.name)
+                                navigate("/newPaper",{
+                                    state: it
+                                })
                             }}>선택</Button>
                     </Card.Body>
                 </Card>
