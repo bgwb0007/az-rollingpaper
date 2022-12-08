@@ -41,7 +41,7 @@ const NewPaper = () =>{
 
         let params = {
             PartitionKey: receiver.name,
-            RowKey: 5,
+            RowKey: "5",
             name : receiver.name ,
             email : receiver.email ,
             phone : receiver.phone,
