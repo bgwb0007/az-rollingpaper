@@ -37,9 +37,11 @@ const NewPaper = () =>{
         });
     }
     const sendPaper = (e)=>{
-        let url = "https://rollingpaper01fnc.azurewebsites.net/api/HttpTrigger1?code=Fhylh_FMtkiJWxUTjn_T_fyfgYgXSxkvJL4z-zQfRtXLAzFuP-pRJQ==";
+        let url = "https://prod-17.eastasia.logic.azure.com:443/workflows/c37bacf5695d438da5843900cf884ea1/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=J3o9Ia4KgWxzno0moRAZj1wievsKtuTNtz3WoTzJec8";
 
         let params = {
+            PartitionKey: receiver.name,
+            RowKey: 5,
             name : receiver.name ,
             email : receiver.email ,
             phone : receiver.phone,
