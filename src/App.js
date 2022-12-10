@@ -87,6 +87,9 @@ const memberList = [
 
 
 function App() {
+
+  const sortedItems = memberList;
+
   return (
     <BrowserRouter>
       <div className="App">

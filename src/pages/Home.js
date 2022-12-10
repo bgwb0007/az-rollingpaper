@@ -33,6 +33,13 @@ const Home = ({receiverList}) =>{
 
     return (
         <div className="Home">
+            <div className="mainImg01">
+                <img src="static/img/back01.png" alt="메인배경" />
+            </div>
+            <div className="mainText">
+                <h2>ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</h2>
+                <h2>ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</h2>
+            </div>
             <div>
             <Form.Group className="receiverSerch">
                 <Form.Control 
@@ -45,7 +52,10 @@ const Home = ({receiverList}) =>{
             </Form.Group>
             </div>
             <div className="card-wrap">
-            {state.receiverListSerched.map((it) => (
+            {state.receiverListSerched
+            .sort((a,b)=>
+                a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+            ).map((it) => (
                 <Card key={it.id}>
                     <Card.Img variant="top"/>
                     <Card.Body>
