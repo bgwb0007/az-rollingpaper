@@ -56,7 +56,8 @@ const NewPaper = () =>{
        
         const url = "https://prod-17.eastasia.logic.azure.com:443/workflows/c37bacf5695d438da5843900cf884ea1/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=J3o9Ia4KgWxzno0moRAZj1wievsKtuTNtz3WoTzJec8";
         const date = new Date();
-        const rowKey = receiver.name + "_" + date.getFullYear() + date.getMonth() + date.getDate()
+        
+        const rowKey = receiver.name + "_" + date.getFullYear() + (date.getMonth() + 1) + date.getDate()
                         + date.getHours() + date.getMinutes() + date.getSeconds();
         
         let params = {
@@ -135,7 +136,7 @@ const NewPaper = () =>{
                     placement='top'
                     overlay={
                         <Tooltip id='tooltip-top'>
-                        메시지를 받는 사람만 볼 수 있습니다.
+                        설정하면 메시지를 받는 사람만 볼 수 있습니다.
                         </Tooltip>
                     }
                     >
@@ -169,9 +170,11 @@ const NewPaper = () =>{
             </div>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>2022 연말 Rolling Paper</Modal.Title>
+                    <Modal.Title>발송예약</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>작성한 메시지는 12월 25일 발송됩니다</Modal.Body>
+                <Modal.Body> <strong>{receiver.name}</strong>님께 메시지를 전송합니다.<br /> 작성한 메시지는 00를 통해 12월 00일 발송됩니다<br /><br />
+                보낸사람: {state.author}<br /> 
+                내용: {state.content}</Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     취소
