@@ -13,8 +13,17 @@ const Tree = () =>{
     
     
     const [show, setShow] = useState(false);
+    const [paperArr, setPaperArr] = useState(
+        [
+            {'RowKey':'임서형_111','name': '임서형','author': '글쓴이', 'content':'테스트글입니다.'},
+            {'RowKey':'임서형_222','name': '임서형','author': '22', 'content':'22222222222.'},
+            {'RowKey':'임서형_333','name': '임서형','author': '33', 'content':'33333333333.'},
+            {'RowKey':'임서형_444','name': '임서형','author': '44', 'content':'444444444444.'},
+        ]
+    );
     const [deco1, setDeco1] = useState(false);
     const [deco2, setDeco2] = useState(false);
+    const [decoMap, setDecoMap] = useState(new Map());
     const [modalDeco, setModalDeco] = useState({
         name:"",
         author: "",
@@ -22,38 +31,30 @@ const Tree = () =>{
     });
     const handleClose = () => setShow(false);
     const handleShow = (decoId) => {
-        setModalDeco(tempMap[decoId]);
+        setModalDeco(decoMap.get(decoId));
         setShow(true);
     };
 
-
-    // 빈곳: 0, 사용못하는 위치: -1
-    // 메시지 위치: 메시지id
-    let treeArr1 = [];
-    for(let i = 0; i < 5; i++) {
-        let temp = [];
-        for(let j = 0; j < 5; j++){
-            if((i===0&&j===0) || (i===0&&j===1) || (i===0&&j===4) || (i===1&&j===0) || (i===1&&j===4) || (i===2&&j===0))  temp.push(-1);
-            else temp.push(0);
-        }
-        treeArr1.push(temp);
-    }
     let decoArr = new Array(59).fill(0);
-    const tempMap = {
-        77:{'name': '임서형','author': '글쓴이', 'content':'테스트글입니다.'},
-        88:{'name': '임서형','author': '22', 'content':'22222222222.'},
-        6:{'name': '임서형','author': '33', 'content':'33333333333.'},
-        9:{'name': '임서형','author': '44', 'content':'444444444444.'},
-    };
-    decoArr[3] = 77;
-    decoArr[10] = 88;
-    decoArr[45] = 6;
-    decoArr[58] = 9;
 
-
+    const paperInit = (cb)=>{
+        //TODO. 데이터 받아오기 result.value => paperArr
+        for(let deco of paperArr){
+            setDecoMap(decoMap.set(deco.RowKey, deco));
+        }
+        let i = 0;
+        console.log(paperArr);
+        while(i< paperArr.length){
+            let rand_0_58 = Math.floor(Math.random() * 59);
+            if(decoArr[rand_0_58] === 0){ // 자리있는경우
+                decoArr[rand_0_58] = paperArr[i].RowKey;
+                i++;
+            }
+        }
+        cb();
+    }
     
     const appendDecoP1 = () => {
-        let rand_1_12 = Math.floor(Math.random() * 13) + 1;
         let result = [];
         for(let i=0; i<25; i++){
             if(i===0 || i===1  || i===3 || i===4 || i===5 || i===9){
@@ -64,8 +65,7 @@ const Tree = () =>{
             if(decoId === 0){
                 result.push(<span key={i} className="deco-blank"></span>);
             }else{
-                debugger
-                rand_1_12 = Math.floor(Math.random() * 12) + 1;
+                let rand_1_12 = Math.floor(Math.random() * 12) + 1;
                 let imgSrc = "static/img/deco"+rand_1_12+".png";
                 result.push(<img key={i} src={imgSrc} alt={"deco"+i} onClick={()=>{
                     handleShow(decoId);
@@ -75,7 +75,6 @@ const Tree = () =>{
         return result;
     }
     const appendDecoP2 = () => {
-        let rand_1_12 = Math.floor(Math.random() * 13) + 1;
         let imgSrc = "";
         let result = [];
         for(let i=0; i<40; i++){
@@ -83,7 +82,7 @@ const Tree = () =>{
             if(decoId===0){
                 result.push(<span key={i} className="deco-blank"></span>)
             }else{
-                rand_1_12 = Math.floor(Math.random() * 12) + 1;
+                let rand_1_12 = Math.floor(Math.random() * 12) + 1;
                 imgSrc = "static/img/deco"+rand_1_12+".png";
                 result.push(<img key={i} src={imgSrc} alt="deco" onClick={()=>
                     handleShow(decoId)}></img>)
@@ -93,8 +92,10 @@ const Tree = () =>{
     }
     useEffect(()=>{
         console.log("mount!");
-        setDeco1(appendDecoP1);
-        setDeco2(appendDecoP2);
+        paperInit(()=>{
+            setDeco1(appendDecoP1);
+            setDeco2(appendDecoP2);
+        });
     },[]);
     return <div className="Tree">
         <MyHeader headText={receiver.name + "'s Tree"} leftChild={<Button variant="secondary" onClick={()=>{navigate("/")}}>{'<'} 뒤로가기</Button>}></MyHeader>
