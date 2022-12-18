@@ -33,12 +33,10 @@ const Home = ({receiverList}) =>{
 
     return (
         <div className="Home">
-            <div className="mainImg01">
-                <img src="static/img/back01.png" alt="메인배경" />
-            </div>
             <div className="mainText">
-                <h2>ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</h2>
-                <h2>ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</h2>
+                <img src="static/img/home-tree1.png" alt="메인트리" />
+                <h2>2022년이 모두 지나갔습니다. 한 해 동안 수고 많으셨습니다!<br/>
+                팀 동료들에게 그간의 노력에 감사 인사를 전하고,<br/> 다가오는 2023년을 행복하게 맞이하세요.</h2>
             </div>
             <div>
             <Form.Group className="receiverSerch">
@@ -63,11 +61,16 @@ const Home = ({receiverList}) =>{
                         <Card.Text>
                             {it.name} {it.position}
                         </Card.Text>
-                        <Button variant="primary" onClick={()=>{
+                        <Button variant="warning" onClick={()=>{
                                 navigate("/newPaper",{
                                     state: it
                                 })
-                            }}>선택</Button>
+                            }}>글쓰기</Button>
+                        <Button variant="success" onClick={()=>{
+                            navigate("/tree",{
+                                state: it
+                            })
+                        }}>보기</Button>
                     </Card.Body>
                 </Card>
             ))}

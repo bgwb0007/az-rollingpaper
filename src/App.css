@@ -1,30 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
 /* App */
+html{
+  height: 100%;
+}
+body{
+  min-height: 100%;
+  background-color: #282727;
+}
 .App {
-  padding: 20px;
+  font-family: 'Nanum Pen Script', cursive;
+  font-family: 'Yeon Sung', cursive;
+  
+
+  background-color: #282727;
+  color: #e2e2e2;
 }
 
+header{
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #403d3d;
+}
+header > div{
+  display: flex;
+}
+header .head_text{
+  width: 50%;
+  font-size: 25px;
+  justify-content: center;
+}
+header .head_btn_left{
+  width: 25%;
+  justify-content: start;
+}
+header .head_btn_left button{
+  padding: 7px;
+  max-width: 80px;
+}
 
 /* editor */
 
 .Home {
   width: 80%;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 2rem;
   padding-bottom: 2rem;
 
-}
-.Home .mainImg01{
-  width: 60%;
-  max-width: 400px;
-  min-width: 200px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
-}
-.Home .mainImg01 img{
-  width: 100%;
 }
 .Home .receiverSerch{
   width: 70%;
@@ -35,14 +62,22 @@
   text-align: center;
   margin-bottom: 2rem;
 }
+.Home .mainText img {
+  height: 128px;
+  margin-bottom: 1rem;
+}
 #receiverSerch {
   ime-mode:active;
 }
+.Home .card-body{
+  padding: 10px;
+}
 .Home .card{
-  width: 200px;
+  width: 150px;
   margin-right: 1rem;
   margin-bottom: 1.5rem;
-  
+
+  color: #1c1b1b;
 }
 .Home .card-wrap{
   display: flex;
@@ -52,16 +87,22 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-
-
-.NewPaper {
-  text-align: center;
-  padding: 20px;
+.Home .card p{
+  font-size: 20px;
+}
+.Home .card button:first-of-type{
+  margin-right: 10px;
+}
+.NewPaper .bot-clear {
+  height: 100%;
+  width: 1px;
 }
 .NewPaper .inputWrapper{
   width: 500px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
+  padding: 20px;
 }
 .NewPaper .author,
 .NewPaper .receiver {
@@ -85,24 +126,113 @@
   padding: 10px;
   cursor: pointer;
 }
+.Tree .tree-wrapper{
+  margin-top: 20px;
+}
+.Tree .tree-top{
+  padding-top: 25px;
+  background-image: url("/public/static/img/back-black-top.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+}
+.Tree .tree-img{
+  background-image: url("/public/static/img/tree.png");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: 100% 100%;
 
+  height: 600px;
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Tree img{
+  margin: 4px;
+  cursor: pointer;
+} 
+.Tree .deco-blank{
+  width: 32px;
+  height: 32px;
+  margin: 4px;
+}
+.Tree .tree-part-1{
+  height: 37%;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: flex;
+  align-items: flex-end;
+  flex-flow: row wrap;
+  align-content: flex-end;
+  
+}
+.Tree .tree-part-2{
+  height: 43%;
+
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: flex-end;
+  flex-flow: column wrap;
+  align-content: flex-end;
+  justify-content: space-around ;
+  padding-left: 10px;
+}
+
+.Tree .tree-part-3{
+  height: 20%;
+}
+
+
+.Tree .tree-bottom{
+  background-image: url("/public/static/img/back-black-bottom.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  height: 50px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+}
 
 @media screen and (max-width: 768px) {
+  .Home .mainText h2{
+    font-size: 20px;
+  }
   .Home {
     width: 95%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 2rem;
+    padding-top: 20px;
     padding-bottom: 2rem;
   
   }
-  .Home .card{
-    width: 150px;
-    margin-right: 1rem;
-    margin-bottom: 1.5rem;
-    
-  }
   .NewPaper .inputWrapper{
     width: 100%;
+  }
+  .Tree .tree-top{
+    width: 100%;
+  }
+  .Tree .tree-bottom{
+    width: 100%;
+  }
+  .Tree .tree-img{
+    width: 95%;
+    height: 500px;
+  }
+  .Tree img{
+    margin: 2px;
+  }
+  .Tree .deco-blank{
+    margin: 2px;
   }
 }

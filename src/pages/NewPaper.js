@@ -3,12 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import Badge from 'react-bootstrap/Badge';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+// import Badge from 'react-bootstrap/Badge';
+// import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+// import Tooltip from 'react-bootstrap/Tooltip';
 import axios from 'axios'
 import { useNavigate, useLocation } from "react-router-dom";
-
+import MyHeader from "../components/MyHeader";
 const NewPaper = () =>{
     
     const navigate = useNavigate();
@@ -44,13 +44,13 @@ const NewPaper = () =>{
             [e.target.id]: e.target.value,
         });
     }
-    const handleChangeStateSwitch = (e)=>{
-        const isChecked = e.target.checked;
-        setState({
-            ...state,
-            [e.target.id]: isChecked ? 'Y' : 'N',
-        })
-    }
+    // const handleChangeStateSwitch = (e)=>{
+    //     const isChecked = e.target.checked;
+    //     setState({
+    //         ...state,
+    //         [e.target.id]: isChecked ? 'Y' : 'N',
+    //     })
+    // }
 
     const sendPaper = (e)=>{
        
@@ -65,7 +65,6 @@ const NewPaper = () =>{
             RowKey: rowKey,
             name : receiver.name ,
             email : receiver.email ,
-            phone : receiver.phone,
             author: state.author,
             content: state.content,
             isPrivateYn : state.isPrivateYn,
@@ -103,6 +102,7 @@ const NewPaper = () =>{
 
     return (
         <div className="NewPaper">
+            <MyHeader headText={receiver.name + "님께 글쓰기"} leftChild={<Button variant="secondary" onClick={()=>{navigate("/")}}>{'<'} 뒤로가기</Button>}></MyHeader>
             <div className="inputWrapper">
                 <InputGroup className="receiver">
                     <InputGroup.Text id="receiver">
@@ -130,7 +130,7 @@ const NewPaper = () =>{
                     placeholder="보내는 사람 이름을 입력해주세요."
                     />
                 </InputGroup>
-                <div className="isPrivateYn">
+                {/* <div className="isPrivateYn">
                 <OverlayTrigger
                     key='top'
                     placement='top'
@@ -151,7 +151,7 @@ const NewPaper = () =>{
                         label="비밀글 보내기"
                         onChange={handleChangeStateSwitch}
                     />
-                </div>
+                </div> */}
                 <Form.Group className="content">
                     <Form.Label></Form.Label>
                     <Form.Control 
@@ -170,9 +170,9 @@ const NewPaper = () =>{
             </div>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>발송예약</Modal.Title>
+                    <Modal.Title>메시지 보내기</Modal.Title>
                 </Modal.Header>
-                <Modal.Body> <strong>{receiver.name}</strong>님께 메시지를 전송합니다.<br /> 작성한 메시지는 00를 통해 12월 00일 발송됩니다<br /><br />
+                <Modal.Body> <strong>{receiver.name}</strong>님께 글을 남깁니다.<br /><br />
                 보낸사람: {state.author}<br /> 
                 내용: {state.content}</Modal.Body>
                 <Modal.Footer>
@@ -184,6 +184,7 @@ const NewPaper = () =>{
                 </Button>
                 </Modal.Footer>
             </Modal>
+            <div className="bot-clear"></div>
         </div>
     );
 }
