@@ -16,6 +16,13 @@ body{
   color: #e2e2e2;
 }
 
+.modal-content{
+  font-family: 'Yeon Sung', cursive;
+}
+.modal-content .modal-body{
+  font-size: x-large;
+}
+
 header{
   padding-top: 20px;
   padding-bottom: 10px;

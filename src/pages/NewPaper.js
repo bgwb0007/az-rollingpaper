@@ -78,10 +78,8 @@ const NewPaper = () =>{
              })
           .then(function (response) {
                // response  
-               debugger
                if(response.data.status === '200' && response.data.success === 'Y'){
                 console.log("성공:",response);
-                alert("메시지 전송이 성공적으로 예약되었습니다.");
                 navigate("/");
                }else{
                 console.log("실패:",response);
@@ -90,13 +88,11 @@ const NewPaper = () =>{
                }
           }).catch(function (error) {
               // 오류발생시 실행
-              debugger
               console.log("실패:",error);
               alert("저장에 실패했습니다. 잠시 후 다시 시도해주세요.");
               handleClose();
           }).then(function() {
               // 항상 실행
-              debugger
           });
     }
 
@@ -184,7 +180,6 @@ const NewPaper = () =>{
                 </Button>
                 </Modal.Footer>
             </Modal>
-            <div className="bot-clear"></div>
         </div>
     );
 }
