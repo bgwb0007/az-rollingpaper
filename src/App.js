@@ -4,7 +4,7 @@ import NewPaper from './pages/NewPaper';
 import Tree from './pages/Tree';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-
+import Snow from './components/Snow';
 const memberList = [
 {
       id : 1,
@@ -92,6 +92,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <Snow></Snow>
         <Routes>
           <Route path="/" element={<Home receiverList={memberList}/>} />
           <Route path="/newPaper" element={<NewPaper />} />

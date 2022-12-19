@@ -1,0 +1,55 @@
+const Snow = ()=>{
+    return <div className="Snow">
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+        <div className="snowflake"></div>
+    </div>
+}
+export default Snow;

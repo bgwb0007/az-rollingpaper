@@ -110,14 +110,20 @@ const Tree = () =>{
 
     useEffect(()=>{
         sendHttpReq();
+        document.body.style.overflow = 'hidden';
+        return ()=>{document.body.style.overflow = 'auto'};
     },[]);
 
     useEffect(()=>{
         paperInit(()=>{
             setDeco1(appendDecoP1);
             setDeco2(appendDecoP2);
+            
         });
+        
     },[paperArr]);
+
+
 
     return <div className="Tree">
         <MyHeader headText={receiver.name + "'s Tree"} leftChild={<Button variant="secondary" onClick={()=>{navigate("/")}}>{'<'} 뒤로가기</Button>}></MyHeader>

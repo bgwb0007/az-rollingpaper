@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -95,6 +95,12 @@ const NewPaper = () =>{
               // 항상 실행
           });
     }
+
+    useEffect(()=>{
+        document.body.style.overflow = 'hidden';
+        return ()=>{document.body.style.overflow = 'auto'};
+    },[]);
+
 
     return (
         <div className="NewPaper">
