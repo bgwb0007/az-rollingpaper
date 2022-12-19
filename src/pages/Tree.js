@@ -3,7 +3,8 @@ import MyHeader from "../components/MyHeader";
 import { useNavigate, useLocation } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import axios from 'axios'
+import axios from 'axios';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Tree = () =>{
 
@@ -44,6 +45,8 @@ const Tree = () =>{
                 if(row.name === receiver.name) temp.push(row);
                }
                setPaperArr(temp);
+               document.getElementsByClassName('loading')[0].style.display = 'none';
+                document.getElementsByClassName('loading')[1].style.display = 'none';
           }).catch(function (error) {
               // 오류발생시 실행
               console.log("실패:",error);
@@ -127,7 +130,8 @@ const Tree = () =>{
 
     return <div className="Tree">
         <MyHeader headText={receiver.name + "'s Tree"} leftChild={<Button variant="secondary" onClick={()=>{navigate("/")}}>{'<'} 뒤로가기</Button>}></MyHeader>
-
+        <Spinner className="loading" animation="border" variant="danger" />
+        <div className="dimmed-div loading"></div>
         <div className="tree-wrapper">
             <div className="tree-top">
                 <div className="tree-img">

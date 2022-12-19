@@ -57,7 +57,8 @@ const Home = ({receiverList}) =>{
                 <Card key={it.id}>
                     <Card.Img variant="top"/>
                     <Card.Body>
-                        <Card.Title>프로필Img</Card.Title>
+                        <img src={"static/img/"+it.name+".png"}></img>
+                        <Card.Title></Card.Title>
                         <Card.Text>
                             {it.name} {it.position}
                         </Card.Text>
