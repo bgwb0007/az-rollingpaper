@@ -3,24 +3,15 @@ import MyHeader from "../components/MyHeader";
 import { useNavigate, useLocation } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import axios from 'axios'
+
 const Tree = () =>{
 
     const navigate = useNavigate();
     const location = useLocation();
     const receiver = location.state;
-
-
-    
-    
     const [show, setShow] = useState(false);
-    const [paperArr, setPaperArr] = useState(
-        [
-            {'RowKey':'임서형_111','name': '임서형','author': '글쓴이', 'content':'테스트글입니다.'},
-            {'RowKey':'임서형_222','name': '임서형','author': '22', 'content':'22222222222.'},
-            {'RowKey':'임서형_333','name': '임서형','author': '33', 'content':'33333333333.'},
-            {'RowKey':'임서형_444','name': '임서형','author': '44', 'content':'444444444444.'},
-        ]
-    );
+    const [paperArr, setPaperArr] = useState([]);
     const [deco1, setDeco1] = useState(false);
     const [deco2, setDeco2] = useState(false);
     const [decoMap, setDecoMap] = useState(new Map());
@@ -35,10 +26,36 @@ const Tree = () =>{
         setShow(true);
     };
 
+    const sendHttpReq = (e)=>{
+        const url = "https://prod-14.centralus.logic.azure.com:443/workflows/1f968dca724f4e719721c248962ef9d9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=hjsDZHV-FxY0MveyalbxF1KlopuANG_1U5SOAwDwGjw";
+       
+        axios.get(url, {}
+          ,{
+            headers:{ 
+             'Content-type': 'application/json', 
+             'Accept': 'application/json' 
+               } 
+             })
+          .then(function (res) {
+               // response
+               console.log("res: ",res.data.value);
+               let temp = [];
+               for(let row of res.data.value){
+                if(row.name === receiver.name) temp.push(row);
+               }
+               setPaperArr(temp);
+          }).catch(function (error) {
+              // 오류발생시 실행
+              console.log("실패:",error);
+          }).then(function() {
+              // 항상 실행
+          });
+    }
+
+
     let decoArr = new Array(59).fill(0);
 
     const paperInit = (cb)=>{
-        //TODO. 데이터 받아오기 result.value => paperArr
         for(let deco of paperArr){
             setDecoMap(decoMap.set(deco.RowKey, deco));
         }
@@ -90,13 +107,18 @@ const Tree = () =>{
         }
         return result;
     }
+
     useEffect(()=>{
-        console.log("mount!");
+        sendHttpReq();
+    },[]);
+
+    useEffect(()=>{
         paperInit(()=>{
             setDeco1(appendDecoP1);
             setDeco2(appendDecoP2);
         });
-    },[]);
+    },[paperArr]);
+
     return <div className="Tree">
         <MyHeader headText={receiver.name + "'s Tree"} leftChild={<Button variant="secondary" onClick={()=>{navigate("/")}}>{'<'} 뒤로가기</Button>}></MyHeader>
 
