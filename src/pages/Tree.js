@@ -145,8 +145,8 @@ const Tree = () =>{
                     
                 </div>
             </div>
-            <div className="tree-bottom">
-            </div>
+            {/* <div className="tree-bottom">
+            </div> */}
             
         </div>
         <Modal show={show} onHide={handleClose}>
