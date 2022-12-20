@@ -104,7 +104,7 @@ const NewPaper = () =>{
 
     return (
         <div className="NewPaper">
-            <MyHeader headText={receiver.name + "님께 글쓰기"} leftChild={<Button variant="secondary" onClick={()=>{navigate("/")}}>{'<'} 뒤로가기</Button>}></MyHeader>
+            <MyHeader headText={receiver.name + "님께 글쓰기"} leftChild={<Button variant="secondary" onClick={()=>{navigate(-1)}}>{'<'} 뒤로가기</Button>}></MyHeader>
             <div className="inputWrapper">
                 <InputGroup className="receiver">
                     <InputGroup.Text id="receiver">
@@ -172,11 +172,11 @@ const NewPaper = () =>{
             </div>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>메시지 보내기</Modal.Title>
+                    <Modal.Title><strong>{receiver.name}</strong>님께 글을 남깁니다.</Modal.Title>
                 </Modal.Header>
-                <Modal.Body> <strong>{receiver.name}</strong>님께 글을 남깁니다.<br /><br />
-                보낸사람: {state.author}<br /> 
-                내용: {state.content}</Modal.Body>
+                <Modal.Body>
+                보낸사람: {state.author}<br /> <br /> 
+                내용: {state.content}<br /><br /></Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     취소

@@ -121,15 +121,16 @@ const Tree = () =>{
         paperInit(()=>{
             setDeco1(appendDecoP1);
             setDeco2(appendDecoP2);
-            
         });
-        
     },[paperArr]);
 
-
-
     return <div className="Tree">
-        <MyHeader headText={receiver.name + "'s Tree"} leftChild={<Button variant="secondary" onClick={()=>{navigate("/")}}>{'<'} 뒤로가기</Button>}></MyHeader>
+        <MyHeader headText={receiver.name + "'s Tree"} 
+        leftChild={<Button variant="secondary" onClick={()=>{navigate("/")}}>{'<'} 홈으로</Button>}
+        rightChild={<Button variant="success" onClick={()=>{navigate("/NewPaper",{
+            state : receiver
+        })}}>글쓰기</Button>}
+        ></MyHeader>
         <Spinner className="loading" animation="border" variant="danger" />
         <div className="dimmed-div loading"></div>
         <div className="tree-wrapper">
@@ -153,8 +154,8 @@ const Tree = () =>{
             <Modal.Header closeButton>
                 <Modal.Title><strong>{modalDeco.author}</strong>님이 보낸 메시지</Modal.Title>
             </Modal.Header>
-            <Modal.Body> <br /><br />
-            {modalDeco.content}<br /><br /><br /><br /></Modal.Body>
+            <Modal.Body> <br />
+            {modalDeco.content}<br /><br /><br /></Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
                 닫기
