@@ -39,7 +39,7 @@ const Tree = () =>{
              })
           .then(function (res) {
                // response
-               console.log("res: ",res.data.value);
+            //    console.log("res: ",res.data.value);
                let temp = [];
                for(let row of res.data.value){
                 if(row.name === receiver.name) temp.push(row);
@@ -63,7 +63,6 @@ const Tree = () =>{
             setDecoMap(decoMap.set(deco.RowKey, deco));
         }
         let i = 0;
-        console.log(paperArr);
         while(i< paperArr.length){
             let rand_0_58 = Math.floor(Math.random() * 59);
             if(decoArr[rand_0_58] === 0){ // 자리있는경우
