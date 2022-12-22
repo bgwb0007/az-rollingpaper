@@ -23,7 +23,7 @@ const Tree = () =>{
     });
     const [searchParams] = useSearchParams();
     const receiver = {"name": searchParams.get('name')};
-    console.log("searchParams: ", searchParams.get('name'));
+    // console.log("searchParams: ", searchParams.get('name'));
     const handleClose = () => setShow(false);
     const handleShow = (decoId) => {
         setModalDeco(decoMap.get(decoId));
@@ -34,57 +34,57 @@ const Tree = () =>{
         window.Kakao.Share.sendDefault({
             objectType: 'feed',
             content: {
-              title: '오늘의 디저트',
-              description: '아메리카노, 빵, 케익',
+              title: receiver.name + '\'s Tree',
+              description: '클라우드 운영혁신팀 연말 롤링페이퍼',
               imageUrl:
-                'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
+                'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net/static/img/home-tree1.png',
               link: {
-                mobileWebUrl: 'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net',
-                webUrl: 'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net',
+                mobileWebUrl: 'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net/tree?name=' + receiver.name,
+                webUrl: 'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net/tree?name=' + receiver.name,
               },
             },
             itemContent: {
-              profileText: 'Kakao',
-              profileImageUrl: 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-              titleImageUrl: 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-              titleImageText: 'Cheese cake',
-              titleImageCategory: 'Cake',
-              items: [
-                {
-                  item: 'Cake1',
-                  itemOp: '1000원',
-                },
-                {
-                  item: 'Cake2',
-                  itemOp: '2000원',
-                },
-                {
-                  item: 'Cake3',
-                  itemOp: '3000원',
-                },
-                {
-                  item: 'Cake4',
-                  itemOp: '4000원',
-                },
-                {
-                  item: 'Cake5',
-                  itemOp: '5000원',
-                },
-              ],
-              sum: '총 결제금액',
-              sumOp: '15000원',
+              profileText: '2022 롤링페이퍼',
+              profileImageUrl: 'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net/static/img/deco9.png',
+            //   titleImageUrl: 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+            //   titleImageText: 'Cheese cake',
+            //   titleImageCategory: 'Cake',
+            //   items: [
+            //     {
+            //       item: 'Cake1',
+            //       itemOp: '1000원',
+            //     },
+            //     {
+            //       item: 'Cake2',
+            //       itemOp: '2000원',
+            //     },
+            //     {
+            //       item: 'Cake3',
+            //       itemOp: '3000원',
+            //     },
+            //     {
+            //       item: 'Cake4',
+            //       itemOp: '4000원',
+            //     },
+            //     {
+            //       item: 'Cake5',
+            //       itemOp: '5000원',
+            //     },
+            //   ],
+            //   sum: '총 결제금액',
+            //   sumOp: '15000원',
             },
             social: {
-              likeCount: 10,
-              commentCount: 20,
-              sharedCount: 30,
+            //   likeCount: 10,
+              commentCount: paperArr.length,
+            //   sharedCount: 30,
             },
             buttons: [
               {
                 title: '웹으로 이동',
                 link: {
-                  mobileWebUrl: 'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net',
-                  webUrl: 'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net',
+                  mobileWebUrl: 'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net/tree?name=' + receiver.name,
+                  webUrl: 'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net/tree?name=' + receiver.name,
                 },
               }
             ],
@@ -109,6 +109,7 @@ const Tree = () =>{
                 if(row.name === receiver.name) temp.push(row);
                }
                setPaperArr(temp);
+               
                document.getElementsByClassName('loading')[0].style.display = 'none';
                 document.getElementsByClassName('loading')[1].style.display = 'none';
           }).catch(function (error) {
@@ -182,6 +183,7 @@ const Tree = () =>{
 
     useEffect(()=>{
         paperInit(()=>{
+            console.log("length: ", paperArr);
             setDeco1(appendDecoP1);
             setDeco2(appendDecoP2);
         });
