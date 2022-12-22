@@ -89,6 +89,11 @@ const memberList = [
 
 
 function App() {
+
+  if(!window.Kakao.isInitialized()){
+    window.Kakao.init(process.env.REACT_APP_JS_KEY);
+    // console.log("key: ",process.env.REACT_APP_JS_KEY);
+  }
   return (
     <BrowserRouter>
       <div className="App">

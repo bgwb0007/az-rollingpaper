@@ -65,16 +65,14 @@ const Home = ({receiverList}) =>{
                         <Card.Text>
                             {it.name} {it.position}
                         </Card.Text>
-                        <Button variant="warning" onClick={()=>{
+                        {/* <Button variant="warning" onClick={()=>{
                                 navigate("/newPaper",{
                                     state: it
                                 })
-                            }}>글쓰기</Button>
+                            }}>글쓰기</Button> */}
                         <Button variant="success" onClick={()=>{
-                            navigate("/tree",{
-                                state: it
-                            })
-                        }}>보기</Button>
+                            navigate("/tree?name=" + it.name)
+                        }}>Tree 확인하기</Button>
                     </Card.Body>
                 </Card>
             ))}
