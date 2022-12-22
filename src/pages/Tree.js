@@ -37,7 +37,7 @@ const Tree = () =>{
               title: receiver.name + '\'s Tree',
               description: '클라우드 운영혁신팀 연말 롤링페이퍼',
               imageUrl:
-                'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net/static/img/kakao-share.png',
+                'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net/static/img/kakao-share2.png',
               link: {
                 mobileWebUrl: 'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net/tree?name=' + receiver.name,
                 webUrl: 'https://agreeable-pebble-0e7f4bc00.2.azurestaticapps.net/tree?name=' + receiver.name,
